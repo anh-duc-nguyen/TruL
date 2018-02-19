@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include <list>
+#include <ctype.h>
 
 /* We will use the dollar sign to mark the end of the file in the
    buffer. */
@@ -15,6 +16,10 @@
 #define SPACE ' '
 #define TAB '\t'
 #define NEW_LINE '\n'
+
+const char kNonAlphanum[] =
+{';', ':', '(', ')', ',', '=', '>', '<', '+', '-', '*', '/',
+ kCommentMarker, kSpace, kTab, kNewLine};
 
 using namespace std;
 
@@ -53,6 +58,14 @@ class Buffer
     return (c == SPACE || c == TAB || c == NEW_LINE);
   }
   
+  inline bool is_num (const char c)
+  {
+    return (isdigit(c))
+  }
+  inline bool is_alp (const char c)
+  {
+    return (isalpha(c))
+  }
   // Probably some other stuff too.
   
 };

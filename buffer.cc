@@ -9,8 +9,7 @@ Buffer::Buffer (char *filename)
     cerr << "Can't open source file " << *filename << endl;
     buffer_fatal_error();
   }
-
-  // ....
+  buffer_ = make_unique<StreamBuffer>(&source_file_);
 }
 
 Buffer::~Buffer()
@@ -18,6 +17,14 @@ Buffer::~Buffer()
 	source_file.close();
 }
 
+
+char Buffer::next_char() {
+  return buffer_->NextChar();
+}
+
+void Buffer::unreadChar(const char c) {
+  return buffer_->unreadChar(c);
+}
 
 
 void Buffer::buffer_fatal_error() const
