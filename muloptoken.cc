@@ -1,7 +1,8 @@
 #include "muloptoken.h"
 
-MulopToken::MulopToken()
+MulopToken::MulopToken(const &string attr)
 {
+  this->attribute = *attr;
   type = 4;
 }
 
@@ -19,6 +20,9 @@ void MulopToken::set_attribute(mulop_attr_type attr){
 	this->attribute = attr;
 }
 
+string * MulopToken::to_string() const{
+	return "Mulop Token Attr_Number:" + attribute;
+}
 
 
 

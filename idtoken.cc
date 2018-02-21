@@ -1,7 +1,8 @@
 #include "idtoken.h"
 
-IdToken::IdToken()
+IdToken::IdToken(const &string attr)
 {
+  this->attribute = *attr;
   type = 5;
 }
 
@@ -17,6 +18,10 @@ keyword_attr_type IdToken::get_attribute()
 // Set the attribute of this token
 void IdToken::set_attribute(const string& attr){
 	this->attribute = *attr;
+}
+string *to_string() const
+{
+	return "ID Token attr_number " + attribute;
 }
 
 

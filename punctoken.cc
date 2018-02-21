@@ -19,6 +19,11 @@ void PuncToken::set_attribute(punc_attr_type attr){
 	this->attribute = attr;
 }
 
+string* PuncToken::to_string()
+{
+	retrun "PuncToken attribute" + attribute;
+}
+
 
 
 

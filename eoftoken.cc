@@ -8,4 +8,9 @@ EofToken::EofToken()
 EofToken::~EofToken()
 {}
 
+EofToken::*tostring(){
+	return "7";
+}
+
+
 

@@ -1,8 +1,9 @@
 #include "numtoken.h"
 
-NumToken::NumToken()
+NumToken::NumToken(const &string attr)
 {
   type = 6;
+  this->attribute = attr;
 }
 
 NumToken::~NumToken()
@@ -19,4 +20,6 @@ void NumToken::set_attribute(const string& attr){
 	this->attribute = *attr;
 }
 
-
+string* NumToken::to_string(){
+	return "NumToken" + attribute;
+}
