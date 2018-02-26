@@ -1,16 +1,12 @@
 #include "token.h"
 
-Token::Token()
-{
-  type = TOKEN_NO_TYPE;
-}
+Token::Token(const token_type type_ ) : type(type_) {}
 
-Token::~Token()
-{}
+Token::~Token() {}
 
-void Token::set_token_type (token_type_type type)
+void Token::set_token_type (token_type_type type_)
 {
-  this->type = type;
+  this->type = type_;
 }
 
 token_type_type Token::get_token_type() const

@@ -8,8 +8,8 @@
 #include <list>
 #include <ctype.h>
 
-/* We will use the dollar sign to mark the end of the file in the
-   buffer. */
+// The Truman Language using all alphabet in ASCII,
+// and digits from 0 - 9 and the following character
 #define EOF_MARKER '$'
 
 #define COMMENT_MARKER '#'
@@ -26,48 +26,35 @@ using namespace std;
 class Buffer
 {
  public:
-
-  // Open the program file and initialize the scanner buffer.
   Buffer(char *filename);
-  
-  // Close the file and cleanup.
-  ~Buffer();
-  
-  // Remove the next character from the buffer and
-  // return it.
+  virtual ~Buffer();
+  //~Buffer();
+
+  // removes and return the next char from the buffer
+  //.ignore: blocks of whitespaces and commend line
   char next_char();
-  
-  // Put a character back at the front of the buffer.
+
+  // bring a character to the buffer. 
+  //@para: c last character, returned by next_char()
   void unread_char (char c);
   
   
- private:
-
+ private: 
+ //protected:
   static const int MAX_BUFFER_SIZE = 1024;
- 
-  // The stream object for the source file.
   ifstream source_file;
-  
-  /* If something catastrophic happens in the buffer, print
-     an error message and then call this method to exit. */
+
+  //print error if bad thing happend
   void buffer_fatal_error() const;
-  
-  // Useful utility function.  Is c a whitespace char?
+
+  //inline functions for whitespace
   inline bool is_whitespace (const char c)
   {
     return (c == SPACE || c == TAB || c == NEW_LINE);
   }
   
-  inline bool is_num (const char c)
-  {
-    return (isdigit(c))
-  }
-  inline bool is_alp (const char c)
-  {
-    return (isalpha(c))
-  }
-  // Probably some other stuff too.
-  
+  //inline fuctions for valid input
+  inline bool isValid(char c);
 };
 
 #endif

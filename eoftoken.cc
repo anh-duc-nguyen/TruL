@@ -9,8 +9,5 @@ EofToken::~EofToken()
 {}
 
 EofToken::*tostring(){
-	return "7";
+	return "#7 end of File";
 }
-
-
-
