@@ -1,15 +1,32 @@
 #include "buffer.h"
+#include <ctype.h>
+#include <iostream>
 
-Buffer::Buffer (char *filename)
-{
-  // Open the file and fill the buffer.
-  source_file.open (filename);
-  if (source_file.fail()) {
-    // Failed to open source file.
-    cerr << "Can't open source file " << *filename << endl;
-    buffer_fatal_error();
+using namespace std;
+
+bool isValid(const char c){
+  return islower(c) || isdigit(c);
+}
+
+void fill_buffer(iostream *const stream, list<char> * buffer, const int  MAX_BUFFER_SIZE){
+  for (int i = 0; i < MAX_BUFFER_SIZE && !is_empty_stream(stream); i++){
+    buffer->push_back(stream->get());
   }
-  buffer = make_unique<StreamBuffer>(&source_file_);
+}
+
+
+Buffer::Buffer (const char * const stream) : stream(stream), fin(false){
+  removed_space_and_commend();
+}
+
+Buffer::Buffer(const char *const filename) : fin(false){
+  source_file.open(filename);
+  if (source_file.faile()){
+    cerr<<"Cannot open the file"<< endl;
+    buffer_fatal_error;
+  }
+  stream = &source_file;
+  removed_space_and_commend;
 }
 
 Buffer::~Buffer()
@@ -17,15 +34,45 @@ Buffer::~Buffer()
 	source_file.close();
 }
 
+// not complete:
+bool Buffer::removed_space_and_commend(){
+  char head = next();
+  bool complete = false;
 
+  while (has_whitespace(head) || head == COMMENT_MARKER){
+    complete = true;
+    while (has_whitespace(head)){
+      head = next();
+    }
+    if (head == COMMENT_MARKER){
+      skip
+    }
+  }
+}
+
+///////////////////////
 char Buffer::next_char() {
-  return buffer->NextChar();
+  if (buf.empty()){
+    fill_buffer( stream, &buf, MAX_BUFFER_SIZE);
+  }
+
+  if (buf.empty()){
+    fin = true;
+    return EOF_MARKER;
+  }
+
+  char head = buf.font();
+  buf.pop_front();
+  return head;
+  //return buffer->NextChar();
 }
 
 void Buffer::unreadChar(const char c) {
-  return buffer->unreadChar(c);
+  if (c != EOF_MARKER) {
+    fin = false;
+    buf.push_front(c);
+  }
 }
-
 
 void Buffer::buffer_fatal_error() const
 {
