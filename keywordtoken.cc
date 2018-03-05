@@ -1,3 +1,8 @@
+/* Implementation of a scanner for Truman Programming Language
+ * Class: CS 420
+ * @author: Anh Nguyen
+ * @version: Mar 01, 2018
+ */
 #include "keywordtoken.h"
 
 KeyWordToken::KeyWordToken( keyword_attr_type attr ) 
@@ -30,5 +35,6 @@ string KeyWordToken::to_string() const {
 		case keyword_attr::KW_PRINT: 	{return ans + "KW_PRINT"}
 		case keyword_attr::KW_NOT: 		{return ans + "KW_NOT"}
 		case keyword_attr::KW_NO_ATTR: 	{return ans + "KW_NO_ATTR"}
+	}
 }
 

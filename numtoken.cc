@@ -1,8 +1,13 @@
+/* Implementation of a scanner for Truman Programming Language
+ * Class: CS 420
+ * @author: Anh Nguyen
+ * @version: Mar 01, 2018
+ */
 #include "numtoken.h"
 
-NumToken::NumToken()
+NumToken::NumToken(const string& attr) : attribute_(attr) 
 {
-  type = 6;
+  Token::set_token_type(token_type_type::TOKEN_NUM);
 }
 
 NumToken::~NumToken()

@@ -1,3 +1,8 @@
+/* Implementation of a scanner for Truman Programming Language
+ * Class: CS 420
+ * @author: Anh Nguyen
+ * @version: Mar 01, 2018
+ */
 #include "buffer.h"
 #include <ctype.h>
 #include <iostream>
@@ -72,6 +77,10 @@ void Buffer::unreadChar(const char c) {
     fin = false;
     buf.push_front(c);
   }
+}
+
+bool is_empty_stream(istream *const stream) {
+  return stream->peek() == EOF;
 }
 
 void Buffer::buffer_fatal_error() const

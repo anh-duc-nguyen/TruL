@@ -1,3 +1,9 @@
+/* Implementation of a scanner for Truman Programming Language
+ * Class: CS 420
+ * @author: Anh Nguyen
+ * @version: Mar 01, 2018
+ */
+
 #ifndef KEYWORDTOKEN_H
 #define KEYWORDTOKEN_H
 

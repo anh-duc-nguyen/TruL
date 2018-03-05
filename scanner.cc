@@ -1,3 +1,8 @@
+/* Implementation of a scanner for Truman Programming Language
+ * Class: CS 420
+ * @author: Anh Nguyen
+ * @version: Mar 01, 2018
+ */
 #include "scanner.h"
 
 Scanner::Scanner (char *filename) : buf(new Buffer(filename)) {}
@@ -12,81 +17,6 @@ void Scanner::scanner_fatal_error(const string& message)
   cerr << "Exiting on Scanner Fatal Error: " << message << endl;
   exit (-1);
 }
-// ALL THE CONST VAR IS HERE
-/*
-const int A = 2;
-const int AN = 3;
-const int AND = 4;
-const int B = 5;
-const int BE = 6;
-const int BEG = 7;
-const int BEGI = 8;
-const int BEGIN = 9;
-const int BO = 10;
-const int BOO = 11;
-const int BOOL = 12;
-const int E = 13;
-const int EL = 14;
-const int ELS = 15;
-const int ELSE = 16;
-const int EN = 17;
-const int END = 18;
-const int I = 19;
-const int IF = 20;
-const int IN = 21;
-const int INT = 22;
-const int L = 23;
-const int LO = 24;
-const int LOO = 25;
-const int LOOP = 26;
-const int N = 27;
-const int NO = 28;
-const int NOT = 29;
-const int O = 30;
-const int OR = 31;
-const int P = 32;
-const int PR = 33;
-const int PRI = 34;
-const int PRIN = 35;
-const int PRINT = 36;
-const int PRO = 37;
-const int PROC = 38;
-const int PROCE = 39;
-const int PROCED = 40;
-const int PROCEDU = 41;
-const int PROCEDUR = 42;
-const int PROCEDURE = 43;
-const int PROG = 44;
-const int PROGR = 45;
-const int PROGRA = 46;
-const int PROGRAM = 47;
-const int T = 48;
-const int TH = 49;
-const int THE = 50;
-const int THEN = 51;
-const int W = 52;
-const int WH = 53;
-const int WHI = 54;
-const int WHIL = 55;
-const int WHILE = 56;
-
-const int SEMICOLON = 57;
-const int COLON = 58;
-const int COMMA = 59;
-const int OPENBRACKET = 60;
-const int CLOSEBRACKET = 61;
-const int EQUAL = 62;
-const int LESS = 63;
-const int LESSEQUAL = 64;
-const int NOTEQUAL = 65;
-const int GREATER = 66;
-const int GREATEREQUAL = 67;
-const int ADD = 68;
-const int SUBTRACT = 69;
-const int MULTIPLY = 70;
-const int DIVIDE = 71;
-const int ASSIGN = 72;
-*/
 
 bool in_set(const char character, const vector<char>& a_set ){
   for (const char c : a_set){
@@ -173,7 +103,8 @@ Token *Scanner::next_token()
           scanner_fatal_error(string("illegal character: ")+c );
         }
         break;
-
+    // For all the state, please check scannerState.txt
+        
       case 1: //IDENTIFIER:
         if (is_alphanum(c)) {
           state = 1;
