@@ -26,8 +26,17 @@ public:
 	bool parsing();
 	bool end_of_file() const;
 private:
-	Scanner *lex;
-	Token *word;
-	
+	Scanner * lex;
+	Token * word;
+	sring * curr_env;
+	string * main_env;
+	string *procedure_name;
+	int curr_parameter_pos;
+	int formal_parameter_pos;
+	bool parsing_formal_parameter
+	Symbol_Table stab;
+
+	void next();
+
 
 }
