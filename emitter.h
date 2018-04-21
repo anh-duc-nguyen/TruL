@@ -7,29 +7,42 @@ using namespace std;
 
 typedef enum instruction_type
 {
-	INST_MOVE = 802,
-	INST_ADD =  803,
-	INST_SUB =  804,
-	INST_MUL =  805,
-	INST_DIV =  806,
-	INST_NEG =  807,
-	INST_NOT =  808,
-	INST_LEA =  809,
-	INST_BRUN = 810,
-	INST_BREZ = 811,
-	INST_BRPO = 812,
-	INST_BRNE = 813,
-	INST_OUTB = 814,
-    INST_HALT = 815,
-    INST_GARBAGE = 899
+	MOVE = 802,
+	ADD =  803,
+	SUB =  804,
+	MUL =  805,
+	DIV =  806,
+	NEG =  807,
+	NOT =  808,
+	LEA =  809,
+	BRUN = 810,
+	BREZ = 811,
+	BRPO = 812,
+	BRNE = 813,
+	OUTB = 814,
+    HALT = 815,
+    GARBAGE = 899
 };
 
 class Emitter{
-	public :
+	public : 
 		Emitter();
 		~Emitter();
 
 		string * get_new_label();
-		void emit_label(const string * label) const;
-		
-}
+
+		// Emit mabel :
+		//default
+		void emit_label(const string * label) const; 	
+		//for immediate mode
+		void emit_move(const Register *reg, int immedidate) const;
+		// register direct mdoe
+		void emit_move(const Register *reg, const Register *regd) const;}
+		// memory direct mode.
+		void emit_move(const Register *reg, const string *var) const;
+		// memery move
+		void emit_move(const string *var, const Register *reg) const
+
+		void emit_to_addr (inst_type inst, const Register *reg, int immediate) const;
+		void emit_to_addr(inst_type inst, const Register *reg, const Register *src) const;
+  		void emit_to_addr(inst_type inst, const Register *reg, const string *var) const;
